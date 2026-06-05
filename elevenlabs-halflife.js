@@ -61,8 +61,8 @@ const lines = [
   "It's not supposed to do that.",
 ];
 
-const OUT_CLEAN = join("audio", "halflife");
-const OUT_FX = join("audio", "halflife-fx");
+const OUT_CLEAN = join("audio", "game", "halflife");
+const OUT_FX = join("audio", "game", "halflife-fx");
 mkdirSync(OUT_CLEAN, { recursive: true });
 mkdirSync(OUT_FX, { recursive: true });
 

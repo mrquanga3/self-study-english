@@ -67,8 +67,8 @@ const lines = [
   "Area clear. Regroup on me.",
 ];
 
-const OUT_CLEAN = join("audio", "elevenlabs-tactical");
-const OUT_FX = join("audio", "elevenlabs-tactical-fx");
+const OUT_CLEAN = join("audio", "game", "tactical");
+const OUT_FX = join("audio", "game", "tactical-fx");
 mkdirSync(OUT_CLEAN, { recursive: true });
 mkdirSync(OUT_FX, { recursive: true });
 
