@@ -130,6 +130,32 @@ for (const s of sets) {
   app.appendChild(card);
 }
 
+// --- Game / special voices: single-file ElevenLabs clips (NOT accent-switchable;
+// they have no "play" class so the dropdown leaves them alone). ---
+const gameClips = [
+  { title: "🎮 Tactical Radio — walkie-talkie", rule: "FPS combat callouts + radio static", src: "game/tactical-fx/voice.mp3" },
+  { title: "🎮 Tactical — clean", rule: "Same callouts, no radio FX", src: "game/tactical/voice.mp3" },
+  { title: "🎮 Half-Life — radio", rule: "Iconic Half-Life lines + radio static", src: "game/halflife-fx/voice.mp3" },
+  { title: "🎚️ Voice option · Charlie", rule: "Deep, Confident (radio)", src: "game/voice-options/charlie-radio.mp3" },
+  { title: "🎚️ Voice option · Callum", rule: "Husky Trickster (radio)", src: "game/voice-options/callum-radio.mp3" },
+  { title: "🎚️ Voice option · Brian", rule: "Deep, Resonant (radio)", src: "game/voice-options/brian-radio.mp3" },
+  { title: "🎚️ Voice option · Bill", rule: "Wise, Mature (radio)", src: "game/voice-options/bill-radio.mp3" },
+  { title: "🎚️ Voice option · George", rule: "Storyteller (radio)", src: "game/voice-options/george-radio.mp3" },
+  { title: "🎚️ Voice option · Eric", rule: "Smooth, Trustworthy (radio)", src: "game/voice-options/eric-radio.mp3" },
+];
+const gameHeader = document.createElement("section");
+gameHeader.className = "card combined";
+gameHeader.innerHTML = `<h2>🎮 Game &amp; Special Voices (ElevenLabs)</h2>
+  <p class="examples">Expressive voices — the accent dropdown above does <b>not</b> affect these.</p>`;
+app.appendChild(gameHeader);
+for (const g of gameClips) {
+  const card = document.createElement("section");
+  card.className = "card";
+  card.innerHTML = `<h2>${g.title}</h2><p class="rule">${g.rule}</p>
+    <audio controls preload="none" src="audio/${g.src}"></audio>`;
+  app.appendChild(card);
+}
+
 // Accent/voice switcher: updates every player's src, keeping the same set.
 const picker = document.getElementById("voice");
 for (const v of voices) {
