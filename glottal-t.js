@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "glottal-t");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -32,6 +33,13 @@ const words = [
   "Curtain.",
   "Fountain.",
   "Important.", // casual: "impor-'nt"
+  // More -ten / -tten words that glottalize
+  "Tighten.",
+  "Threaten.",
+  "Frighten.",
+  "Shorten.",
+  "Sweeten.",
+  "Mitten.",
 ];
 
 // Domain examples in context (use words that glottalize: button/written/forgotten).
@@ -51,10 +59,7 @@ const intro = "Welcome. Let's learn how to pronounce some words and sentences. T
 const text = [intro, ...words.map((w) => `${w} ${w}`), ...domain].join(" ");
 
 // American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

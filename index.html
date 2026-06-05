@@ -46,7 +46,11 @@
 <header>
   <div class="flag">🇺🇸</div>
   <h1>American English Pronunciation &amp; Reductions</h1>
-  <p>Connected-speech listening practice — female (Ava) &amp; male (Andrew) voices.</p>
+  <p>Connected-speech listening practice — US, Indian &amp; Australian voices.</p>
+  <p style="margin-top:14px;">
+    <label for="voice" style="color:var(--muted);font-size:.85rem;">Voice / accent: </label>
+    <select id="voice" style="background:#0b1220;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:.9rem;"></select>
+  </p>
 </header>
 <main id="app"></main>
 <footer>
@@ -57,7 +61,7 @@
 <script>
 const sets = [
   { id: "combined", title: "▶ Full Course (all parts)", rule: "Everything below, back to back.",
-    examples: "All 9 parts in the recommended study order.", combined: true },
+    examples: "All parts in the recommended study order.", combined: true },
   { id: "reductions", title: "1 · Single-word Reductions", rule: "Casual spoken forms",
     examples: "<code>wanna</code> (want to), <code>gonna</code> (going to), <code>gotta</code> (got to)" },
   { id: "word-reductions", title: "2 · Word Reductions (weak forms)", rule: "Function words go weak",
@@ -78,6 +82,40 @@ const sets = [
     examples: "<code>world / word / would</code>, <code>ship / sheep</code>, <code>cache / cash</code>" },
   { id: "it-acronyms", title: "10 · IT Acronyms", rule: "How tech terms are said aloud",
     examples: "<code>XML → ex-em-el</code>, <code>JSON → jay-son</code>, <code>GUI → gooey</code>" },
+  { id: "pilot-comms", title: "11 · Pilot / ATC Comms", rule: "Aviation radio phraseology",
+    examples: "<code>Mayday</code>, <code>cleared for takeoff</code>, <code>niner</code>, <code>squawk 7700</code>" },
+  { id: "pilot-radio", title: "12 · Pilot Comms (radio static)", rule: "Same calls, with VHF radio noise",
+    examples: "Band-limited + static, like a real cockpit radio 📻" },
+  { id: "bbc-news", title: "13 · BBC News (British)", rule: "Formal British broadcast English",
+    examples: "<code>BBC News at Ten</code>, weather, headlines 🇬🇧" },
+  { id: "numbers", title: "14 · Numbers", rule: "Numbers in different situations",
+    examples: "<code>$19.99</code>, <code>3.14</code>, <code>21st</code>, <code>1500</code>" },
+  { id: "dates", title: "15 · Dates & Time", rule: "Dates, years & clock time",
+    examples: "<code>1990 → nineteen ninety</code>, <code>7:30 → half past seven</code>" },
+  { id: "radio-tactical", title: "16 · Tactical Radio (clean)", rule: "Military/combat radio chatter",
+    examples: "<code>Enemy contact</code>, <code>requesting backup</code>, <code>move move move</code>" },
+  { id: "radio-tactical-fx", title: "17 · Tactical Radio (walkie-talkie)", rule: "Same, with game-style radio static 📻",
+    examples: "Squelch clicks, roger beep, heavy static" },
+];
+
+// Voices (must match voices.js file names).
+const voices = [
+  { file: "us-female.mp3", label: "🇺🇸 US · Ava (F)" },
+  { file: "us-male.mp3",   label: "🇺🇸 US · Andrew (M)" },
+  { file: "in-female.mp3", label: "🇮🇳 Indian · Neerja (F)" },
+  { file: "in-male.mp3",   label: "🇮🇳 Indian · Prabhat (M)" },
+  { file: "au-female.mp3", label: "🇦🇺 Australian · Natasha (F)" },
+  { file: "au-male.mp3",   label: "🇦🇺 Australian · William (M)" },
+  { file: "sg-female.mp3", label: "🇸🇬 Singapore · Luna (F)" },
+  { file: "sg-male.mp3",   label: "🇸🇬 Singapore · Wayne (M)" },
+  { file: "th-female.mp3", label: "🇹🇭 Thai · Premwadee (F)" },
+  { file: "th-male.mp3",   label: "🇹🇭 Thai · Niwat (M)" },
+  { file: "ru-female.mp3", label: "🇷🇺 Russian · Svetlana (F)" },
+  { file: "ru-male.mp3",   label: "🇷🇺 Russian · Dmitry (M)" },
+  { file: "jp-female.mp3", label: "🇯🇵 Japanese · Nanami (F)" },
+  { file: "jp-male.mp3",   label: "🇯🇵 Japanese · Keita (M)" },
+  { file: "zh-female.mp3", label: "🇨🇳 Chinese · Xiaoxiao (F)" },
+  { file: "zh-male.mp3",   label: "🇨🇳 Chinese · Yunxi (M)" },
 ];
 
 const app = document.getElementById("app");
@@ -88,23 +126,32 @@ for (const s of sets) {
     <h2>${s.title}</h2>
     <p class="rule">${s.rule}</p>
     <p class="examples">${s.examples}</p>
-    <div class="players">
-      <div class="player"><span>♀ Female (Ava)</span>
-        <audio controls preload="none" src="audio/${s.id}/female.mp3"></audio></div>
-      <div class="player"><span>♂ Male (Andrew)</span>
-        <audio controls preload="none" src="audio/${s.id}/male.mp3"></audio></div>
-    </div>`;
+    <audio class="play" controls preload="none" src="audio/${s.id}/us-female.mp3"></audio>`;
   app.appendChild(card);
 }
 
-// Only one audio plays at a time: starting one pauses all the others.
-document.querySelectorAll("audio").forEach((audio) => {
-  audio.addEventListener("play", () => {
-    document.querySelectorAll("audio").forEach((other) => {
-      if (other !== audio) other.pause();
-    });
+// Accent/voice switcher: updates every player's src, keeping the same set.
+const picker = document.getElementById("voice");
+for (const v of voices) {
+  const opt = document.createElement("option");
+  opt.value = v.file; opt.textContent = v.label;
+  picker.appendChild(opt);
+}
+picker.addEventListener("change", () => {
+  document.querySelectorAll("audio.play").forEach((a) => {
+    const wasPlaying = !a.paused;
+    a.pause();
+    a.src = a.src.replace(/[^/]+\.mp3$/, picker.value);
+    if (wasPlaying) a.play();
   });
 });
+
+// Only one audio plays at a time: starting one pauses all the others.
+document.addEventListener("play", (e) => {
+  document.querySelectorAll("audio").forEach((other) => {
+    if (other !== e.target) other.pause();
+  });
+}, true);
 </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "contractions");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -40,16 +41,21 @@ const domain = [
   "We'll process your payment.", // We'll
   "I've opened an account.",     // I've
   "They'll approve the loan.",   // They'll
+  // Other common contractions (is / has / 'd / 're)
+  "He's at work.",        // he's  (he is)
+  "She's almost done.",   // she's
+  "It's ready now.",      // it's
+  "That's mine.",         // that's
+  "I'd go if I could.",   // I'd   (I would)
+  "We're on our way.",    // we're
+  "There's a problem.",   // there's
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is contractions. Listen for the difference between I, I've, and I'll. Listen and repeat.";
 const text = [intro, ...sentences, ...domain].join(" ");
 
 // Casual American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

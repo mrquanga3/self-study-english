@@ -1,22 +1,10 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "reductions");
 mkdirSync(OUT_DIR, { recursive: true });
-
-// American (en-US) neural voices — change VOICE to any of these:
-//   Female: en-US-AriaNeural, en-US-JennyNeural, en-US-MichelleNeural,
-//           en-US-AnaNeural, en-US-AmberNeural, en-US-AshleyNeural,
-//           en-US-CoraNeural, en-US-ElizabethNeural, en-US-NancyNeural,
-//           en-US-SaraNeural, en-US-JaneNeural, en-US-MonicaNeural
-//   Male:   en-US-GuyNeural, en-US-DavisNeural, en-US-AndrewNeural,
-//           en-US-BrianNeural, en-US-JasonNeural, en-US-TonyNeural,
-//           en-US-EricNeural, en-US-ChristopherNeural, en-US-RogerNeural
-const VOICES = [
-  { name: "en-US-AvaNeural", file: "female.mp3" },    // female (casual)
-  { name: "en-US-AndrewNeural", file: "male.mp3" },   // male (casual)
-];
 
 const sentences = [
   "I wanna go home.",          // wanna  -> want to
@@ -53,15 +41,23 @@ const sentences = [
   "I wanna transfer some money.", // wanna -> want to
   "I gotta pay off the loan.",     // gotta -> got to
   "They’re gonna review my account.", // gonna -> going to
-  "I hafta update my PIN."         // hafta -> have to
+  "I hafta update my PIN.",        // hafta -> have to
+  // More common reductions (ESL reference lists)
+  "I'm tired 'cuz I worked late.", // 'cuz   -> because
+  "Whatcha doing?",                // whatcha -> what are you
+  "There's a lotta work.",         // lotta  -> lot of
+  "I'm supposed to finish today.", // supposed to -> sposta
+  "I used to live here.",          // used to -> useta
+  "She's trying to help.",         // trying to -> tryna
+  "He has to go now."              // has to -> hasta
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is single word reductions, like wanna, gonna, and gotta. Listen and repeat.";
 const text = [intro, ...sentences].join(" ");
 
-for (const { name, file } of VOICES) {
+for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();
-  await tts.setMetadata(name, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
+  await tts.setMetadata(voice, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
 
   const dest = join(OUT_DIR, file);
   const { audioStream } = tts.toStream(text);
@@ -74,7 +70,7 @@ for (const { name, file } of VOICES) {
     out.on("error", reject);
   });
 
-  console.log(`Success! Saved ${dest} using voice ${name}`);
+  console.log(`Success! Saved ${dest} using voice ${voice}`);
 }
 
 process.exit(0);

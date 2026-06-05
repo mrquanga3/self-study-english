@@ -19,8 +19,16 @@ neural TTS (`msedge-tts`). Each script = one "set" = one folder under `audio/`.
   processes, not `import`ed in series (the first exit would kill the rest).
 - `audio/<set>/female.mp3` + `male.mp3` — generated output.
 
-Each generator follows the same shape: build a `text` string, then loop over a
-`jobs` array of `{ voice, file }`, streaming `tts.toStream(text)` to disk.
+Each generator follows the same shape: build a `text` string, then loop over the
+shared `jobs` array (imported from `voices.js`) of `{ voice, file }`, streaming
+`tts.toStream(text)` to disk.
+
+- `voices.js` — the single source of truth for which voices/accents are produced
+  (US Ava/Andrew, Indian Neerja/Prabhat, Australian Natasha/William). Add/remove
+  a voice here and every set + the combiner + page picks it up. Output files are
+  named by accent: `us-female.mp3`, `in-male.mp3`, `au-female.mp3`, etc.
+- `index.html` reads the same file names; its accent dropdown swaps the `<audio>`
+  `src` between the `voices.js` suffixes.
 
 ## Hard rules (don't regress these)
 

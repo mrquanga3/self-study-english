@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "flap-t");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -39,6 +40,15 @@ const words = [
   "Daughter.",      // dau-der
   "Ability.",       // abili-dy
   "Automation.",    // au-do-may-shun
+  // More common flap-T words (ESL lists)
+  "Thirty.",        // thir-dy
+  "Forty.",         // for-dy
+  "Little.",        // li-ddle
+  "Bottle.",        // bo-ddle
+  "Letter.",        // le-dder
+  "Beautiful.",     // beau-di-ful
+  "Whatever.",      // wha-dever
+  "Get over it.",   // ge-dover-it
 ];
 
 // Say each item twice so the flap is easy to catch.
@@ -46,10 +56,7 @@ const intro = "Welcome. Let's learn how to pronounce some words and sentences. T
 const text = [intro, ...words.map((w) => `${w} ${w}`)].join(" ");
 
 // American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

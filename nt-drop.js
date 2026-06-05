@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "nt-drop");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -34,16 +35,19 @@ const sentences = [
   "Check the interest rate.",      // interest  -> innerest
   "I have twenty in my account.",  // twenty    -> twenny
   "Visit the banking center.",     // center    -> cenner
+  // More common nt-drop examples
+  "It's an international company.", // international -> innernational
+  "I'm a little disappointed.",     // disappointed -> disappoinned
+  "What's the quantity?",           // quantity     -> quanny
+  "Twenty twenty.",                 // twenty       -> twenny
+  "I had a phone interview.",       // interview    -> innerview
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is the N T reduction. After an N, the T often disappears. For example, internet sounds like innernet. Listen and repeat.";
 const text = [intro, ...sentences].join(" ");
 
 // American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "palatalization");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -34,16 +35,20 @@ const sentences = [
   "Did you get your statement?",     // did you   -> didja
   "Would you like to transfer?",     // would you -> wouldja
   "I bet you saved money.",          // bet you   -> betcha
+
+  // S + Y -> /sh/ and Z + Y -> /zh/
+  "I'll miss you.",                  // miss you  -> mishu
+  "God bless you.",                  // bless you -> blesshu
+  "How's your day?",                 // how's your -> howzher (z+y -> zh)
+  "What do you think?",              // do you    -> d'ya
+  "Don't you dare.",                 // don't you -> doncha
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is palatalization. D plus you sounds like ja, and T plus you sounds like cha. For example, did you sounds like didja. Listen and repeat.";
 const text = [intro, ...sentences].join(" ");
 
 // Casual American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

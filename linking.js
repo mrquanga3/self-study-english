@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "linking");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -42,6 +43,14 @@ const phrases = [
   "Pay it off.",   // pay-i-toff
   "Sign in.",      // sig-nin
   "Cash it out.",  // ca-shi-tout
+
+  // 7) More common linked phrases
+  "An hour.",      // a-nour
+  "Not at all.",   // no-da-tall
+  "Far away.",     // fa-raway
+  "First of all.", // fir-stuh-vall
+  "Hold on.",      // hol-don
+  "Come on.",      // co-mon
   // (The "nt -> n" T-drop — twenty, internet, center — lives in nt-drop.js)
 ];
 
@@ -50,10 +59,7 @@ const intro = "Welcome. Let's learn how to pronounce some words and sentences. T
 const text = [intro, ...phrases.map((p) => `${p} ${p}`)].join(" ");
 
 // American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

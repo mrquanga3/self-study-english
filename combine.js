@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
+import { jobs } from "./voices.js";
 
 // Stitches every set's audio into one mp3 per voice. All sets use the same
 // format (24 kHz mono mp3), so concatenating the file buffers plays fine.
@@ -15,19 +16,24 @@ const sets = [
   "palatalization",
   "minimal-pairs",
   "it-acronyms",
+  "pilot-comms",
+  "bbc-news",
+  "numbers",
+  "dates",
 ];
 
 const OUT_DIR = join("audio", "combined");
 mkdirSync(OUT_DIR, { recursive: true });
 
-for (const voice of ["female.mp3", "male.mp3"]) {
+// One combined file per voice (us-female.mp3, in-male.mp3, ...).
+for (const { file } of jobs) {
   const buffers = [];
   for (const set of sets) {
-    const p = join("audio", set, voice);
+    const p = join("audio", set, file);
     if (existsSync(p)) buffers.push(readFileSync(p));
     else console.warn(`(skip, missing) ${p}`);
   }
-  const dest = join(OUT_DIR, voice);
+  const dest = join(OUT_DIR, file);
   writeFileSync(dest, Buffer.concat(buffers));
   console.log(`Saved ${dest} (${buffers.length} sets)`);
 }

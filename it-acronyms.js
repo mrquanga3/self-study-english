@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "it-acronyms");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -21,16 +22,22 @@ const sentences = [
   "CLI. Run it from the CLI.",           // see-el-eye
   "UUID. Generate a UUID.",              // you-you-eye-dee
   "CI CD. Set up the CI CD pipeline.",   // see-eye see-dee
+  // More common IT terms (tricky pronunciations)
+  "GIF. Send me a GIF.",                 // "jif" or "gif"
+  "SaaS. It's a SaaS product.",          // "sass"
+  "Regex. Write a regex.",               // "reg-ex"
+  "Nginx. Configure nginx.",             // "engine-x"
+  "Kubernetes. Deploy on Kubernetes.",   // koo-ber-NET-eez
+  "OAuth. Log in with OAuth.",           // "oh-auth"
+  "Enum. Define an enum.",               // "ee-num"
+  "Cache. Clear the cache.",             // "cash"
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is I.T. acronyms. Some are spelled out, like XML. Some are read as a word, like JSON. Listen and repeat.";
 const text = [intro, ...sentences].join(" ");
 
 // Casual American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

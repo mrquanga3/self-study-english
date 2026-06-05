@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "minimal-pairs");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -67,6 +68,27 @@ const groups = [
       { word: "Bang", say: "Bang, bang.", sentence: "The door shut with a bang." }, // /ŋ/
     ],
   },
+  {
+    label: "three / tree (th vs t)",
+    items: [
+      { word: "Three", say: "Three, three.", sentence: "I have three." }, // /θ/
+      { word: "Tree",  say: "Tree, tree.",   sentence: "Climb the tree." }, // /t/
+    ],
+  },
+  {
+    label: "live / leave (short i vs long ee)",
+    items: [
+      { word: "Live",  say: "Live, live.",   sentence: "I live here." },  // /ɪ/
+      { word: "Leave", say: "Leave, leave.", sentence: "Don't leave." },  // /iː/
+    ],
+  },
+  {
+    label: "pull / pool",
+    items: [
+      { word: "Pull", say: "Pull, pull.", sentence: "Pull the door." },   // /ʊ/
+      { word: "Pool", say: "Pool, pool.", sentence: "Swim in the pool." }, // /uː/
+    ],
+  },
 ];
 
 // Build: "GROUP. World, world. The whole world... Word, word. ..."
@@ -78,10 +100,7 @@ const intro = "Welcome. Let's learn how to pronounce some words and sentences. T
 const text = [intro, ...sentences].join(" ");
 
 // Casual American voices.
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();

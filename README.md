@@ -59,6 +59,34 @@ To (re)enable Pages: repo **Settings → Pages → Source: Deploy from a branch 
 | palatalization | `palatalization.js` | D/T + Y blend | did you → "didja" |
 | minimal-pairs | `minimal-pairs.js` | similar-sounding words | world / word / would |
 | it-acronyms | `it-acronyms.js` | how tech terms are said | XML → ex-em-el, JSON → jay-son |
+| pilot-comms | `pilot-comms.js` | aviation/ATC phraseology | "Mayday", "cleared for takeoff", "niner" |
+| pilot-radio | `radio-fx.js` | pilot calls + VHF radio static | band-limited + noise (needs ffmpeg) |
+| bbc-news | `bbc-news.js` | formal British broadcast | "BBC News at Ten", weather, headlines |
+| numbers | `numbers.js` | numbers in context | $19.99, 3.14, 21st, 1500 |
+| dates | `dates.js` | dates, years, clock time | 1990 → nineteen ninety, 7:30 → half past seven |
+
+## Voices / accents
+
+All sets are generated in **18 voices** (defined once in `voices.js`):
+
+| File suffix | Accent | Voices |
+|---|---|---|
+| `us-*` | American | Ava / Andrew |
+| `gb-*` | British | Sonia / Ryan |
+| `in-*` | Indian | Neerja / Prabhat |
+| `au-*` | Australian | Natasha / William |
+| `sg-*` | Singapore | Luna / Wayne |
+| `th-*` | Thai* | Premwadee / Niwat |
+| `ru-*` | Russian* | Svetlana / Dmitry |
+| `jp-*` | Japanese* | Nanami / Keita |
+| `zh-*` | Chinese* | Xiaoxiao / Yunxi |
+
+The lessons teach **American** connected speech; other accents read the same
+text in their own accent (useful for comparison). The web page has a dropdown to
+switch accent.
+
+\* These are the engine's *native-language* voices reading English — heavily
+accented and sometimes rough (Japanese/Chinese especially). Included for variety.
 
 ## Customizing
 

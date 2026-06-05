@@ -1,6 +1,7 @@
 import { createWriteStream, mkdirSync } from "fs";
 import { join } from "path";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { jobs } from "./voices.js";
 
 const OUT_DIR = join("audio", "word-reductions");
 mkdirSync(OUT_DIR, { recursive: true });
@@ -36,16 +37,21 @@ const sentences = [
   "This form is for the loan.",   // for -> /fer/
   "Deposit and withdraw.",        // and -> /en/
   "Log in to your account.",      // to  -> /tuh/
+  // More common weak-form phrases (ESL references)
+  "Fish and chips.",              // and -> /n/
+  "A cup of tea.",                // of  -> /ə/
+  "Nice to meet you.",            // to  -> /tuh/
+  "Thanks for coming.",           // for -> /fer/
+  "A piece of cake.",             // of  -> /ə/
+  "Rock and roll.",               // and -> /n/
+  "I'll see you at lunch.",       // at  -> /ət/
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is word reductions. Small function words like to, for, and and become short and weak. Listen and repeat.";
 const text = [intro, ...sentences].join(" ");
 
 // Casual American voices (they actually reduce; the careful ones don't).
-const jobs = [
-  { voice: "en-US-AvaNeural", file: "female.mp3" },
-  { voice: "en-US-AndrewNeural", file: "male.mp3" },
-];
+// voices imported from voices.js
 
 for (const { voice, file } of jobs) {
   const tts = new MsEdgeTTS();
