@@ -93,6 +93,15 @@ for (const s of sets) {
     </div>`;
   app.appendChild(card);
 }
+
+// Only one audio plays at a time: starting one pauses all the others.
+document.querySelectorAll("audio").forEach((audio) => {
+  audio.addEventListener("play", () => {
+    document.querySelectorAll("audio").forEach((other) => {
+      if (other !== audio) other.pause();
+    });
+  });
+});
 </script>
 </body>
 </html>
