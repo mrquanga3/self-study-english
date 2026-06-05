@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>American English Pronunciation &amp; Reductions</title>
+<style>
+  :root {
+    --bg: #0f172a; --card: #1e293b; --muted: #94a3b8;
+    --text: #f1f5f9; --accent: #38bdf8; --line: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+  }
+  header {
+    text-align: center; padding: 48px 20px 32px;
+    background: linear-gradient(160deg, #1e293b, #0f172a);
+    border-bottom: 1px solid var(--line);
+  }
+  header h1 { margin: 0 0 8px; font-size: 1.9rem; }
+  header p { margin: 0; color: var(--muted); }
+  .flag { font-size: 2rem; }
+  main { max-width: 820px; margin: 0 auto; padding: 24px 16px 64px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 22px; margin: 18px 0;
+  }
+  .card h2 { margin: 0 0 4px; font-size: 1.25rem; }
+  .rule { color: var(--accent); font-weight: 600; margin: 0 0 10px; }
+  .examples { color: var(--muted); font-size: 0.95rem; margin: 0 0 16px; }
+  .examples code {
+    background: #0b1220; padding: 2px 6px; border-radius: 5px; color: #e2e8f0;
+  }
+  .players { display: flex; gap: 18px; flex-wrap: wrap; }
+  .player { flex: 1; min-width: 240px; }
+  .player span { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+  audio { width: 100%; }
+  .combined { border-color: var(--accent); }
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 24px; border-top: 1px solid var(--line); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div class="flag">🇺🇸</div>
+  <h1>American English Pronunciation &amp; Reductions</h1>
+  <p>Connected-speech listening practice — female (Ava) &amp; male (Andrew) voices.</p>
+</header>
+<main id="app"></main>
+<footer>
+  Generated with Microsoft Edge neural TTS · <a href="https://github.com/">source</a>
+</footer>
+
+<script>
+const sets = [
+  { id: "combined", title: "▶ Full Course (all parts)", rule: "Everything below, back to back.",
+    examples: "All 9 parts in the recommended study order.", combined: true },
+  { id: "reductions", title: "1 · Single-word Reductions", rule: "Casual spoken forms",
+    examples: "<code>wanna</code> (want to), <code>gonna</code> (going to), <code>gotta</code> (got to)" },
+  { id: "word-reductions", title: "2 · Word Reductions (weak forms)", rule: "Function words go weak",
+    examples: "<code>to → tuh</code>, <code>for → fer</code>, <code>and → en</code>" },
+  { id: "contractions", title: "3 · Contractions", rule: "Hear the 've / 'll ending",
+    examples: "<code>I</code> · <code>I've</code> · <code>I'll</code>" },
+  { id: "flap-t", title: "4 · Flap T", rule: "T between vowels → soft D",
+    examples: "<code>water → wadder</code>, <code>better → bedder</code>, <code>metadata</code>" },
+  { id: "glottal-t", title: "5 · Glottal T", rule: "T before N is held silent",
+    examples: "<code>button → buh-'n</code>, <code>kitten</code>, <code>written</code>" },
+  { id: "nt-drop", title: "6 · NT Reduction", rule: "T drops after N",
+    examples: "<code>internet → innernet</code>, <code>twenty → twenny</code>" },
+  { id: "linking", title: "7 · Linking", rule: "Words glue together",
+    examples: "<code>pick it up → pi-ki-tup</code>, <code>an apple → a-napple</code>" },
+  { id: "palatalization", title: "8 · Palatalization (D/T + Y)", rule: "did you → didja",
+    examples: "<code>did you → didja</code>, <code>got you → gotcha</code>" },
+  { id: "minimal-pairs", title: "9 · Minimal Pairs", rule: "Similar words, one different sound",
+    examples: "<code>world / word / would</code>, <code>ship / sheep</code>" },
+];
+
+const app = document.getElementById("app");
+for (const s of sets) {
+  const card = document.createElement("section");
+  card.className = "card" + (s.combined ? " combined" : "");
+  card.innerHTML = `
+    <h2>${s.title}</h2>
+    <p class="rule">${s.rule}</p>
+    <p class="examples">${s.examples}</p>
+    <div class="players">
+      <div class="player"><span>♀ Female (Ava)</span>
+        <audio controls preload="none" src="audio/${s.id}/female.mp3"></audio></div>
+      <div class="player"><span>♂ Male (Andrew)</span>
+        <audio controls preload="none" src="audio/${s.id}/male.mp3"></audio></div>
+    </div>`;
+  app.appendChild(card);
+}
+</script>
+</body>
+</html>
