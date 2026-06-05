@@ -156,7 +156,9 @@ for (const g of gameClips) {
   app.appendChild(card);
 }
 
-// Accent/voice switcher: updates every player's src, keeping the same set.
+const SILENT_SRC = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+
+// Accent/voice switcher: updates every player's src/data-src, keeping the same set.
 const picker = document.getElementById("voice");
 for (const v of voices) {
   const opt = document.createElement("option");
@@ -164,18 +166,53 @@ for (const v of voices) {
   picker.appendChild(opt);
 }
 picker.addEventListener("change", () => {
+  const val = picker.value;
   document.querySelectorAll("audio.play").forEach((a) => {
-    const wasPlaying = !a.paused;
-    a.pause();
-    a.src = a.src.replace(/[^/]+\.mp3$/, picker.value);
-    if (wasPlaying) a.play();
+    const savedSrc = a.getAttribute("data-src");
+    if (savedSrc) {
+      a.setAttribute("data-src", savedSrc.replace(/[^/]+\.mp3$/, val));
+    }
+    if (a.src && a.src !== SILENT_SRC) {
+      const wasPlaying = !a.paused;
+      a.pause();
+      a.src = a.src.replace(/[^/]+\.mp3$/, val);
+      if (wasPlaying) a.play().catch(err => {});
+    }
   });
 });
 
-// Only one audio plays at a time: starting one pauses all the others.
+// Helper to unload an audio element and stop background downloads
+function unloadAudio(audio) {
+  if (audio.src && audio.src !== SILENT_SRC) {
+    audio.setAttribute("data-src", audio.src);
+    audio.setAttribute("data-time", audio.currentTime);
+    audio.src = SILENT_SRC;
+    audio.load();
+  }
+}
+
+// Only one audio plays at a time: starting one pauses and unloads all others.
 document.addEventListener("play", (e) => {
+  const activeAudio = e.target;
+
+  // If this audio was unloaded to save bandwidth, restore and play it
+  const savedSrc = activeAudio.getAttribute("data-src");
+  if (activeAudio.src === SILENT_SRC && savedSrc) {
+    const savedTime = parseFloat(activeAudio.getAttribute("data-time") || "0");
+    activeAudio.src = savedSrc;
+    activeAudio.load();
+    activeAudio.currentTime = savedTime;
+    activeAudio.play().catch(err => {});
+  }
+
+  // Stop and unload all other audios from buffering
   document.querySelectorAll("audio").forEach((other) => {
-    if (other !== e.target) other.pause();
+    if (other !== activeAudio) {
+      if (!other.paused) {
+        other.pause();
+      }
+      unloadAudio(other);
+    }
   });
 }, true);
 </script>
