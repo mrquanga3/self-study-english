@@ -1,5 +1,7 @@
 # English Pronunciation Audio Generator
 
+**🔊 Live site: https://mrquanga3.github.io/self-study-english/**
+
 Generates American-English **connected-speech / reduction** practice audio using
 Microsoft Edge's online neural voices (free, no API key). Each "set" is a short
 script that turns a list of words/sentences into an `.mp3` for a female and a
@@ -32,7 +34,16 @@ node palatalization.js
 # ...etc
 ```
 
-Output goes to `audio/<set>/female.mp3` and `audio/<set>/male.mp3`.
+Output goes to `audio/<set>/female.mp3` and `audio/<set>/male.mp3`, plus a
+combined `audio/combined/{female,male}.mp3` containing every part in order.
+
+## Web page
+
+`index.html` is a static page that plays every set (and the full course) in the
+browser. It's published via GitHub Pages at the link above.
+
+To (re)enable Pages: repo **Settings → Pages → Source: Deploy from a branch →
+`main` → `/ (root)` → Save**. The site is live a minute later.
 
 ## The sets
 
