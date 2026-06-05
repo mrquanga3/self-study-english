@@ -38,6 +38,7 @@ const words = [
   "Competitor.",    // compe-ddi-der (both T's flap)
   "Daughter.",      // dau-der
   "Ability.",       // abili-dy
+  "Automation.",    // au-do-may-shun
 ];
 
 // Say each item twice so the flap is easy to catch.
