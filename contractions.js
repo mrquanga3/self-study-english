@@ -28,8 +28,22 @@ const sentences = groups.flatMap((g) => [
   ...g.frame,
 ]);
 
+// Domain examples in context (IT + banking).
+const domain = [
+  // IT
+  "I've deployed the update.",   // I've
+  "I'll restart the server.",    // I'll
+  "We've fixed the bug.",        // We've
+  "You'll get a notification.",  // You'll
+  // Banking
+  "You've reached your limit.",  // You've
+  "We'll process your payment.", // We'll
+  "I've opened an account.",     // I've
+  "They'll approve the loan.",   // They'll
+];
+
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is contractions. Listen for the difference between I, I've, and I'll. Listen and repeat.";
-const text = [intro, ...sentences].join(" ");
+const text = [intro, ...sentences, ...domain].join(" ");
 
 // Casual American voices.
 const jobs = [

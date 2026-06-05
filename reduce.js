@@ -43,7 +43,17 @@ const sentences = [
   "They coulda won.",          // coulda  -> could have
   "He woulda helped.",         // woulda  -> would have
   "I ain’t ready.",            // ain't   -> am not / is not / are not
-  "She ain’t here."            // ain't   -> is not
+  "She ain’t here.",           // ain't   -> is not
+  // IT domain
+  "I gotta deploy the server.",   // gotta -> got to
+  "We’re gonna refactor the code.", // gonna -> going to
+  "You gotta check the logs.",    // gotta -> got to
+  "I wanna merge this branch.",   // wanna -> want to
+  // Banking domain
+  "I wanna transfer some money.", // wanna -> want to
+  "I gotta pay off the loan.",     // gotta -> got to
+  "They’re gonna review my account.", // gonna -> going to
+  "I hafta update my PIN."         // hafta -> have to
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is single word reductions, like wanna, gonna, and gotta. Listen and repeat.";

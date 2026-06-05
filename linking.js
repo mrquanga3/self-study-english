@@ -29,6 +29,19 @@ const phrases = [
   "Bus stop.",
   "Gas station.",
   "Bad day.",
+  "Catch up.",   // catch + up -> "catchup"
+
+  // 5) IT domain
+  "Back it up.",   // back-it-up
+  "Set it up.",    // set-it-up
+  "Log in.",       // lo-gin
+  "Check it out.", // che-ki-tout
+
+  // 6) Banking domain
+  "Fill it out.",  // fi-li-tout
+  "Pay it off.",   // pay-i-toff
+  "Sign in.",      // sig-nin
+  "Cash it out.",  // ca-shi-tout
   // (The "nt -> n" T-drop — twenty, internet, center — lives in nt-drop.js)
 ];
 

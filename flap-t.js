@@ -22,6 +22,22 @@ const words = [
   "A lot of it.",
   "Put it on.",
   "I gotta go.",
+  // IT domain (T between vowels -> D)
+  "Data.",        // dayda
+  "Router.",      // rouder
+  "Editor.",      // edider
+  "Latency.",     // laydency
+  "Update it.",   // updade it
+  // Banking domain
+  "Credit.",      // creddit
+  "Debit.",       // debbit
+  "Auditor.",     // audider
+  "Pay the quarter.", // quarder
+  // More flap-T words
+  "Functionality.", // functionali-dy
+  "Competitor.",    // compe-ddi-der (both T's flap)
+  "Daughter.",      // dau-der
+  "Ability.",       // abili-dy
 ];
 
 // Say each item twice so the flap is easy to catch.

@@ -46,6 +46,27 @@ const groups = [
       { word: "Fool", say: "Fool, fool.", sentence: "Don't be a fool." },   // /uː/ long oo
     ],
   },
+  {
+    label: "bit / beat (IT)",
+    items: [
+      { word: "Bit",  say: "Bit, bit.",   sentence: "Flip the bit." },        // /ɪ/ short i
+      { word: "Beat", say: "Beat, beat.", sentence: "Don't miss a beat." },   // /iː/ long ee
+    ],
+  },
+  {
+    label: "cache / cash (IT vs banking — homophones!)",
+    items: [
+      { word: "Cache", say: "Cache, cache.", sentence: "Clear the cache." }, // /kæʃ/
+      { word: "Cash",  say: "Cash, cash.",   sentence: "Pay with cash." },   // /kæʃ/ — same sound!
+    ],
+  },
+  {
+    label: "bank / bang (banking)",
+    items: [
+      { word: "Bank", say: "Bank, bank.", sentence: "Go to the bank." },         // /k/
+      { word: "Bang", say: "Bang, bang.", sentence: "The door shut with a bang." }, // /ŋ/
+    ],
+  },
 ];
 
 // Build: "GROUP. World, world. The whole world... Word, word. ..."

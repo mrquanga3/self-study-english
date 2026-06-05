@@ -24,6 +24,16 @@ const sentences = [
   "Can't you see it?",               // can't you -> can-cha
   "I bet you can do it.",            // bet you   -> bet-cha
   "Nice to meet you.",               // meet you  -> mee-chu
+  "I'll let you know.",              // let you   -> let-chu / "le-chu"
+
+  // IT domain
+  "Did you deploy it?",              // did you   -> didja
+  "Would you review my code?",       // would you -> wouldja
+  "Could you restart the server?",   // could you -> couldja
+  // Banking domain
+  "Did you get your statement?",     // did you   -> didja
+  "Would you like to transfer?",     // would you -> wouldja
+  "I bet you saved money.",          // bet you   -> betcha
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is palatalization. D plus you sounds like ja, and T plus you sounds like cha. For example, did you sounds like didja. Listen and repeat.";

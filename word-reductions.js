@@ -26,6 +26,16 @@ const sentences = [
   "I would do it again.",       // would -> /wud/
   "Wait for a minute.",         // a    -> /uh/
   "As soon as possible.",       // as   -> /əz/
+  // IT domain
+  "Push the code to the server.", // to  -> /tuh/
+  "This update is for the app.",  // for -> /fer/
+  "Save and deploy it.",          // and -> /en/
+  "Connect to the database.",     // to  -> /tuh/
+  // Banking domain
+  "Send the money to the bank.",  // to  -> /tuh/
+  "This form is for the loan.",   // for -> /fer/
+  "Deposit and withdraw.",        // and -> /en/
+  "Log in to your account.",      // to  -> /tuh/
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is word reductions. Small function words like to, for, and and become short and weak. Listen and repeat.";

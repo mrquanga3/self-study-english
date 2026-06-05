@@ -34,9 +34,21 @@ const words = [
   "Important.", // casual: "impor-'nt"
 ];
 
-// Say each word twice so the glottal stop is easy to catch.
+// Domain examples in context (use words that glottalize: button/written/forgotten).
+const domain = [
+  // IT
+  "Click the button.",          // button   -> buh-'n
+  "It's written in code.",       // written  -> wri-'n
+  "I've forgotten my password.", // forgotten -> forgah-'n
+  // Banking
+  "Press the button to pay.",    // button   -> buh-'n
+  "A written statement.",        // written  -> wri-'n
+  "Forgotten your PIN?",         // forgotten -> forgah-'n
+];
+
+// Say each word twice so the glottal stop is easy to catch, then the sentences.
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is the glottal T. Before an N sound, the T is held silently. Listen and repeat.";
-const text = [intro, ...words.map((w) => `${w} ${w}`)].join(" ");
+const text = [intro, ...words.map((w) => `${w} ${w}`), ...domain].join(" ");
 
 // American voices.
 const jobs = [

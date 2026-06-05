@@ -26,6 +26,14 @@ const sentences = [
   "I have to see the dentist.",    // dentist   -> dennist
   "My grandpa is seventy.",        // seventy   -> sevenny
   "I wanted to call you.",         // wanted    -> wanned
+  // IT domain
+  "Connect to the internet.",      // internet  -> innernet
+  "Enter your username.",          // enter     -> enner
+  "The counter keeps counting.",   // counter   -> couner
+  // Banking domain
+  "Check the interest rate.",      // interest  -> innerest
+  "I have twenty in my account.",  // twenty    -> twenny
+  "Visit the banking center.",     // center    -> cenner
 ];
 
 const intro = "Welcome. Let's learn how to pronounce some words and sentences. This part is the N T reduction. After an N, the T often disappears. For example, internet sounds like innernet. Listen and repeat.";
