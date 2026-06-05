@@ -58,6 +58,7 @@ To (re)enable Pages: repo **Settings → Pages → Source: Deploy from a branch 
 | linking | `linking.js` | words glue together | pick it up → "pi-ki-tup" |
 | palatalization | `palatalization.js` | D/T + Y blend | did you → "didja" |
 | minimal-pairs | `minimal-pairs.js` | similar-sounding words | world / word / would |
+| it-acronyms | `it-acronyms.js` | how tech terms are said | XML → ex-em-el, JSON → jay-son |
 
 ## Customizing
 

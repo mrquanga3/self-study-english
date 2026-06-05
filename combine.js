@@ -14,6 +14,7 @@ const sets = [
   "linking",
   "palatalization",
   "minimal-pairs",
+  "it-acronyms",
 ];
 
 const OUT_DIR = join("audio", "combined");
