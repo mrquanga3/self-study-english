@@ -10,7 +10,7 @@ See VOICE-CLONING.md for the full guide.
 
 NOTE: only clone a voice you OWN or have CONSENT to use.
 """
-import os, sys, argparse, subprocess, shutil
+import os, sys, argparse, subprocess, shutil, datetime
 import torch, soundfile as sf
 import torchaudio
 
@@ -35,9 +35,15 @@ def main():
     ap.add_argument("--sample", default="sample.wav", help="reference voice WAV (default: sample.wav)")
     ap.add_argument("--text", default=None, help="text to speak (overrides --text-file)")
     ap.add_argument("--text-file", default="intro.txt", help="file with text to speak (default: intro.txt)")
-    ap.add_argument("--output", default="interview_intro.mp3", help="output MP3 (default: interview_intro.mp3)")
+    ap.add_argument("--output", default=None, help="output MP3 (default: <sample-name>_<datetime>.mp3)")
     ap.add_argument("--ref-seconds", type=int, default=12, help="seconds of the sample to use as reference (<=15 best)")
     args = ap.parse_args()
+
+    # Default output keeps the source (video/sample) name and just appends a timestamp.
+    if not args.output:
+        base = os.path.splitext(os.path.basename(args.sample))[0]
+        stamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        args.output = f"{base}_{stamp}.mp3"
 
     ff = ffmpeg_bin()
     if not (shutil.which("ffmpeg") or os.path.exists(ff)):

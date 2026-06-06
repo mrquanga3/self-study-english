@@ -69,7 +69,11 @@ python clone_local.py --text "Hi, I'm Binh. Thanks for meeting me today."
 python clone_local.py --sample sample.wav --output my_intro.mp3 --ref-seconds 10
 ```
 
-Output: **`interview_intro.mp3`** (and a `.wav`) in the project folder.
+Output: by default **`<sample-name>_<datetime>.mp3`** (and a `.wav`) in the
+project folder — e.g. `sample.wav` → `sample_20260606_153012.mp3`. Pass
+`--output` to set an explicit name. Tip: extract the sample with the video's
+name (`node extract-audio.js "interview.mp4" interview.wav 5 30`) so the cloned
+file keeps that name plus the timestamp.
 
 The steps it runs: trim the sample to a short reference → transcribe it →
 load F5-TTS → synthesize → convert to MP3.
