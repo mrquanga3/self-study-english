@@ -252,7 +252,7 @@ Examples:
         sys.exit(
             f"❌ Voice sample not found: {args.sample}\n"
             f"   Extract one with:\n"
-            f'   node extract-audio.js "interview.mp4" sample.wav 5 30'
+            f'   node extract-audio.js "WDX Cypress NMBinh.mp4" sample.wav 5 30'
         )
 
     sample_size = os.path.getsize(args.sample)

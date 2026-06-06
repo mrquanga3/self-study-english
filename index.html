@@ -1,220 +1,305 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>American English Pronunciation &amp; Reductions</title>
-<style>
-  :root {
-    --bg: #0f172a; --card: #1e293b; --muted: #94a3b8;
-    --text: #f1f5f9; --accent: #38bdf8; --line: #334155;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg); color: var(--text); line-height: 1.5;
-  }
-  header {
-    text-align: center; padding: 48px 20px 32px;
-    background: linear-gradient(160deg, #1e293b, #0f172a);
-    border-bottom: 1px solid var(--line);
-  }
-  header h1 { margin: 0 0 8px; font-size: 1.9rem; }
-  header p { margin: 0; color: var(--muted); }
-  .flag { font-size: 2rem; }
-  main { max-width: 820px; margin: 0 auto; padding: 24px 16px 64px; }
-  .card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
-    padding: 20px 22px; margin: 18px 0;
-  }
-  .card h2 { margin: 0 0 4px; font-size: 1.25rem; }
-  .rule { color: var(--accent); font-weight: 600; margin: 0 0 10px; }
-  .examples { color: var(--muted); font-size: 0.95rem; margin: 0 0 16px; }
-  .examples code {
-    background: #0b1220; padding: 2px 6px; border-radius: 5px; color: #e2e8f0;
-  }
-  .players { display: flex; gap: 18px; flex-wrap: wrap; }
-  .player { flex: 1; min-width: 240px; }
-  .player span { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
-  audio { width: 100%; }
-  .combined { border-color: var(--accent); }
-  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 24px; border-top: 1px solid var(--line); }
-  a { color: var(--accent); }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>American English Pronunciation &amp; Reductions</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --muted: #94a3b8;
+      --text: #f1f5f9;
+      --accent: #38bdf8;
+      --line: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      text-align: center;
+      padding: 48px 20px 32px;
+      background: linear-gradient(160deg, #1e293b, #0f172a);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 1.9rem;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .flag {
+      font-size: 2rem;
+    }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin: 18px 0;
+    }
+
+    .card h2 {
+      margin: 0 0 4px;
+      font-size: 1.25rem;
+    }
+
+    .rule {
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 10px;
+    }
+
+    .examples {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 16px;
+    }
+
+    .examples code {
+      background: #0b1220;
+      padding: 2px 6px;
+      border-radius: 5px;
+      color: #e2e8f0;
+    }
+
+    .players {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .player {
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .player span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    .combined {
+      border-color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    a {
+      color: var(--accent);
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <div class="flag">🇺🇸</div>
-  <h1>American English Pronunciation &amp; Reductions</h1>
-  <p>Connected-speech listening practice — US, Indian &amp; Australian voices.</p>
-  <p style="margin-top:14px;">
-    <label for="voice" style="color:var(--muted);font-size:.85rem;">Voice / accent: </label>
-    <select id="voice" style="background:#0b1220;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:.9rem;"></select>
-  </p>
-</header>
-<main id="app"></main>
-<footer>
-  Generated with Microsoft Edge neural TTS ·
-  <a href="https://github.com/mrquanga3/self-study-english">source code on GitHub</a>
-</footer>
+  <header>
+    <div class="flag">🇺🇸</div>
+    <h1>American English Pronunciation &amp; Reductions</h1>
+    <p>Connected-speech listening practice — US, Indian &amp; Australian voices.</p>
+    <p style="margin-top:14px;">
+      <label for="voice" style="color:var(--muted);font-size:.85rem;">Voice / accent: </label>
+      <select id="voice"
+        style="background:#0b1220;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:.9rem;"></select>
+    </p>
+  </header>
+  <main id="app"></main>
+  <footer>
+    Generated with Microsoft Edge neural TTS ·
+    <a href="https://github.com/mrquanga3/self-study-english">source code on GitHub</a>
+  </footer>
 
-<script>
-const sets = [
-  { id: "combined", title: "▶ Full Course (all parts)", rule: "Everything below, back to back.",
-    examples: "All parts in the recommended study order.", combined: true },
-  { id: "reductions", title: "1 · Single-word Reductions", rule: "Casual spoken forms",
-    examples: "<code>wanna</code> (want to), <code>gonna</code> (going to), <code>gotta</code> (got to)" },
-  { id: "word-reductions", title: "2 · Word Reductions (weak forms)", rule: "Function words go weak",
-    examples: "<code>to → tuh</code>, <code>for → fer</code>, <code>and → en</code>" },
-  { id: "contractions", title: "3 · Contractions", rule: "Hear the 've / 'll ending",
-    examples: "<code>I</code> · <code>I've</code> · <code>I'll</code>" },
-  { id: "flap-t", title: "4 · Flap T", rule: "T between vowels → soft D",
-    examples: "<code>water → wadder</code>, <code>better → bedder</code>, <code>metadata</code>" },
-  { id: "glottal-t", title: "5 · Glottal T", rule: "T before N is held silent",
-    examples: "<code>button → buh-'n</code>, <code>kitten</code>, <code>written</code>" },
-  { id: "nt-drop", title: "6 · NT Reduction", rule: "T drops after N",
-    examples: "<code>internet → innernet</code>, <code>twenty → twenny</code>" },
-  { id: "linking", title: "7 · Linking", rule: "Words glue together",
-    examples: "<code>pick it up → pi-ki-tup</code>, <code>an apple → a-napple</code>" },
-  { id: "palatalization", title: "8 · Palatalization (D/T + Y)", rule: "did you → didja",
-    examples: "<code>did you → didja</code>, <code>got you → gotcha</code>" },
-  { id: "minimal-pairs", title: "9 · Minimal Pairs", rule: "Similar words, one different sound",
-    examples: "<code>world / word / would</code>, <code>ship / sheep</code>, <code>cache / cash</code>" },
-  { id: "it-acronyms", title: "10 · IT Acronyms", rule: "How tech terms are said aloud",
-    examples: "<code>XML → ex-em-el</code>, <code>JSON → jay-son</code>, <code>GUI → gooey</code>" },
-  { id: "pilot-comms", title: "11 · Pilot / ATC Comms", rule: "Aviation radio phraseology",
-    examples: "<code>Mayday</code>, <code>cleared for takeoff</code>, <code>niner</code>, <code>squawk 7700</code>" },
-  { id: "pilot-radio", title: "12 · Pilot Comms (radio static)", rule: "Same calls, with VHF radio noise",
-    examples: "Band-limited + static, like a real cockpit radio 📻" },
-  { id: "bbc-news", title: "13 · BBC News (British)", rule: "Formal British broadcast English",
-    examples: "<code>BBC News at Ten</code>, weather, headlines 🇬🇧" },
-  { id: "numbers", title: "14 · Numbers", rule: "Numbers in different situations",
-    examples: "<code>$19.99</code>, <code>3.14</code>, <code>21st</code>, <code>1500</code>" },
-  { id: "dates", title: "15 · Dates & Time", rule: "Dates, years & clock time",
-    examples: "<code>1990 → nineteen ninety</code>, <code>7:30 → half past seven</code>" },
-  { id: "radio-tactical", title: "16 · Tactical Radio (clean)", rule: "Military/combat radio chatter",
-    examples: "<code>Enemy contact</code>, <code>requesting backup</code>, <code>move move move</code>" },
-  { id: "radio-tactical-fx", title: "17 · Tactical Radio (walkie-talkie)", rule: "Same, with game-style radio static 📻",
-    examples: "Squelch clicks, roger beep, heavy static" },
-];
+  <script>
+    const sets = [
+      {
+        id: "combined", title: "▶ Full Course (all parts)", rule: "Everything below, back to back.",
+        examples: "All parts in the recommended study order.", combined: true
+      },
+      {
+        id: "reductions", title: "1 · Single-word Reductions", rule: "Casual spoken forms",
+        examples: "<code>wanna</code> (want to), <code>gonna</code> (going to), <code>gotta</code> (got to)"
+      },
+      {
+        id: "word-reductions", title: "2 · Word Reductions (weak forms)", rule: "Function words go weak",
+        examples: "<code>to → tuh</code>, <code>for → fer</code>, <code>and → en</code>"
+      },
+      {
+        id: "contractions", title: "3 · Contractions", rule: "Hear the 've / 'll ending",
+        examples: "<code>I</code> · <code>I've</code> · <code>I'll</code>"
+      },
+      {
+        id: "flap-t", title: "4 · Flap T", rule: "T between vowels → soft D",
+        examples: "<code>water → wadder</code>, <code>better → bedder</code>, <code>metadata</code>"
+      },
+      {
+        id: "glottal-t", title: "5 · Glottal T", rule: "T before N is held silent",
+        examples: "<code>button → buh-'n</code>, <code>kitten</code>, <code>written</code>"
+      },
+      {
+        id: "nt-drop", title: "6 · NT Reduction", rule: "T drops after N",
+        examples: "<code>internet → innernet</code>, <code>twenty → twenny</code>"
+      },
+      {
+        id: "linking", title: "7 · Linking", rule: "Words glue together",
+        examples: "<code>pick it up → pi-ki-tup</code>, <code>an apple → a-napple</code>"
+      },
+      {
+        id: "palatalization", title: "8 · Palatalization (D/T + Y)", rule: "did you → didja",
+        examples: "<code>did you → didja</code>, <code>got you → gotcha</code>"
+      },
+      {
+        id: "minimal-pairs", title: "9 · Minimal Pairs", rule: "Similar words, one different sound",
+        examples: "<code>world / word / would</code>, <code>ship / sheep</code>, <code>cache / cash</code>"
+      },
+      {
+        id: "it-acronyms", title: "10 · IT Acronyms", rule: "How tech terms are said aloud",
+        examples: "<code>XML → ex-em-el</code>, <code>JSON → jay-son</code>, <code>GUI → gooey</code>"
+      },
+      {
+        id: "pilot-comms", title: "11 · Pilot / ATC Comms", rule: "Aviation radio phraseology",
+        examples: "<code>Mayday</code>, <code>cleared for takeoff</code>, <code>niner</code>, <code>squawk 7700</code>"
+      },
+      {
+        id: "pilot-radio", title: "12 · Pilot Comms (radio static)", rule: "Same calls, with VHF radio noise",
+        examples: "Band-limited + static, like a real cockpit radio 📻"
+      },
+      {
+        id: "bbc-news", title: "13 · BBC News (British)", rule: "Formal British broadcast English",
+        examples: "<code>BBC News at Ten</code>, weather, headlines 🇬🇧"
+      },
+      {
+        id: "numbers", title: "14 · Numbers", rule: "Numbers in different situations",
+        examples: "<code>$19.99</code>, <code>3.14</code>, <code>21st</code>, <code>1500</code>"
+      },
+      {
+        id: "dates", title: "15 · Dates & Time", rule: "Dates, years & clock time",
+        examples: "<code>1990 → nineteen ninety</code>, <code>7:30 → half past seven</code>"
+      },
+      {
+        id: "radio-tactical", title: "16 · Tactical Radio (clean)", rule: "Military/combat radio chatter",
+        examples: "<code>Enemy contact</code>, <code>requesting backup</code>, <code>move move move</code>"
+      },
+      {
+        id: "radio-tactical-fx", title: "17 · Tactical Radio (walkie-talkie)", rule: "Same, with game-style radio static 📻",
+        examples: "Squelch clicks, roger beep, heavy static"
+      },
+    ];
 
-// Voices (must match voices.js file names).
-const voices = [
-  { file: "us-female.mp3", label: "🇺🇸 US · Ava (F)" },
-  { file: "us-male.mp3",   label: "🇺🇸 US · Andrew (M)" },
-  { file: "in-female.mp3", label: "🇮🇳 Indian · Neerja (F)" },
-  { file: "in-male.mp3",   label: "🇮🇳 Indian · Prabhat (M)" },
-  { file: "au-female.mp3", label: "🇦🇺 Australian · Natasha (F)" },
-  { file: "au-male.mp3",   label: "🇦🇺 Australian · William (M)" },
-  { file: "sg-female.mp3", label: "🇸🇬 Singapore · Luna (F)" },
-  { file: "sg-male.mp3",   label: "🇸🇬 Singapore · Wayne (M)" },
-  { file: "th-female.mp3", label: "🇹🇭 Thai · Premwadee (F)" },
-  { file: "th-male.mp3",   label: "🇹🇭 Thai · Niwat (M)" },
-  { file: "ru-female.mp3", label: "🇷🇺 Russian · Svetlana (F)" },
-  { file: "ru-male.mp3",   label: "🇷🇺 Russian · Dmitry (M)" },
-  { file: "jp-female.mp3", label: "🇯🇵 Japanese · Nanami (F)" },
-  { file: "jp-male.mp3",   label: "🇯🇵 Japanese · Keita (M)" },
-  { file: "zh-female.mp3", label: "🇨🇳 Chinese · Xiaoxiao (F)" },
-  { file: "zh-male.mp3",   label: "🇨🇳 Chinese · Yunxi (M)" },
-];
+    // Voices (must match voices.js file names).
+    const voices = [
+      { file: "us-female.mp3", label: "🇺🇸 US · Ava (F)" },
+      { file: "us-male.mp3", label: "🇺🇸 US · Andrew (M)" },
+      { file: "in-female.mp3", label: "🇮🇳 Indian · Neerja (F)" },
+      { file: "in-male.mp3", label: "🇮🇳 Indian · Prabhat (M)" },
+      { file: "au-female.mp3", label: "🇦🇺 Australian · Natasha (F)" },
+      { file: "au-male.mp3", label: "🇦🇺 Australian · William (M)" },
+      { file: "sg-female.mp3", label: "🇸🇬 Singapore · Luna (F)" },
+      { file: "sg-male.mp3", label: "🇸🇬 Singapore · Wayne (M)" },
+      { file: "th-female.mp3", label: "🇹🇭 Thai · Premwadee (F)" },
+      { file: "th-male.mp3", label: "🇹🇭 Thai · Niwat (M)" },
+      { file: "ru-female.mp3", label: "🇷🇺 Russian · Svetlana (F)" },
+      { file: "ru-male.mp3", label: "🇷🇺 Russian · Dmitry (M)" },
+      { file: "jp-female.mp3", label: "🇯🇵 Japanese · Nanami (F)" },
+      { file: "jp-male.mp3", label: "🇯🇵 Japanese · Keita (M)" },
+      { file: "zh-female.mp3", label: "🇨🇳 Chinese · Xiaoxiao (F)" },
+      { file: "zh-male.mp3", label: "🇨🇳 Chinese · Yunxi (M)" },
+    ];
 
-const app = document.getElementById("app");
-for (const s of sets) {
-  const card = document.createElement("section");
-  card.className = "card" + (s.combined ? " combined" : "");
-  card.innerHTML = `
+    const app = document.getElementById("app");
+    for (const s of sets) {
+      const card = document.createElement("section");
+      card.className = "card" + (s.combined ? " combined" : "");
+      card.innerHTML = `
     <h2>${s.title}</h2>
     <p class="rule">${s.rule}</p>
     <p class="examples">${s.examples}</p>
     <audio class="play" controls preload="none" src="audio/${s.id}/us-female.mp3"></audio>`;
-  app.appendChild(card);
-}
+      app.appendChild(card);
+    }
 
-// --- Game / special voices: single-file ElevenLabs clips (NOT accent-switchable;
-// they have no "play" class so the dropdown leaves them alone). ---
-const gameClips = [
-  { title: "🎮 Tactical Radio — walkie-talkie", rule: "FPS combat callouts + radio static", src: "game/tactical-fx/voice.mp3" },
-  { title: "🎮 Tactical — clean", rule: "Same callouts, no radio FX", src: "game/tactical/voice.mp3" },
-  { title: "🎮 Half-Life — radio", rule: "Iconic Half-Life lines + radio static", src: "game/halflife-fx/voice.mp3" },
-  { title: "🎚️ Voice option · Charlie", rule: "Deep, Confident (radio)", src: "game/voice-options/charlie-radio.mp3" },
-  { title: "🎚️ Voice option · Callum", rule: "Husky Trickster (radio)", src: "game/voice-options/callum-radio.mp3" },
-  { title: "🎚️ Voice option · Brian", rule: "Deep, Resonant (radio)", src: "game/voice-options/brian-radio.mp3" },
-  { title: "🎚️ Voice option · Bill", rule: "Wise, Mature (radio)", src: "game/voice-options/bill-radio.mp3" },
-  { title: "🎚️ Voice option · George", rule: "Storyteller (radio)", src: "game/voice-options/george-radio.mp3" },
-  { title: "🎚️ Voice option · Eric", rule: "Smooth, Trustworthy (radio)", src: "game/voice-options/eric-radio.mp3" },
-];
-const gameHeader = document.createElement("section");
-gameHeader.className = "card combined";
-gameHeader.innerHTML = `<h2>🎮 Game &amp; Special Voices (ElevenLabs)</h2>
+    // --- Game / special voices: single-file ElevenLabs clips (NOT accent-switchable;
+    // they have no "play" class so the dropdown leaves them alone). ---
+    const gameClips = [
+      { title: "🎮 Tactical Radio — walkie-talkie", rule: "FPS combat callouts + radio static", src: "game/tactical-fx/voice.mp3" },
+      { title: "🎮 Tactical — clean", rule: "Same callouts, no radio FX", src: "game/tactical/voice.mp3" },
+      { title: "🎮 Half-Life — radio", rule: "Iconic Half-Life lines + radio static", src: "game/halflife-fx/voice.mp3" },
+      { title: "🎚️ Voice option · Charlie", rule: "Deep, Confident (radio)", src: "game/voice-options/charlie-radio.mp3" },
+      { title: "🎚️ Voice option · Callum", rule: "Husky Trickster (radio)", src: "game/voice-options/callum-radio.mp3" },
+      { title: "🎚️ Voice option · Brian", rule: "Deep, Resonant (radio)", src: "game/voice-options/brian-radio.mp3" },
+      { title: "🎚️ Voice option · Bill", rule: "Wise, Mature (radio)", src: "game/voice-options/bill-radio.mp3" },
+      { title: "🎚️ Voice option · George", rule: "Storyteller (radio)", src: "game/voice-options/george-radio.mp3" },
+      { title: "🎚️ Voice option · Eric", rule: "Smooth, Trustworthy (radio)", src: "game/voice-options/eric-radio.mp3" },
+    ];
+    const gameHeader = document.createElement("section");
+    gameHeader.className = "card combined";
+    gameHeader.innerHTML = `<h2>🎮 Game &amp; Special Voices (ElevenLabs)</h2>
   <p class="examples">Expressive voices — the accent dropdown above does <b>not</b> affect these.</p>`;
-app.appendChild(gameHeader);
-for (const g of gameClips) {
-  const card = document.createElement("section");
-  card.className = "card";
-  card.innerHTML = `<h2>${g.title}</h2><p class="rule">${g.rule}</p>
+    app.appendChild(gameHeader);
+    for (const g of gameClips) {
+      const card = document.createElement("section");
+      card.className = "card";
+      card.innerHTML = `<h2>${g.title}</h2><p class="rule">${g.rule}</p>
     <audio controls preload="none" src="audio/${g.src}"></audio>`;
-  app.appendChild(card);
-}
-
-const SILENT_SRC = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-
-// Accent/voice switcher: updates every player's src/data-src, keeping the same set.
-const picker = document.getElementById("voice");
-for (const v of voices) {
-  const opt = document.createElement("option");
-  opt.value = v.file; opt.textContent = v.label;
-  picker.appendChild(opt);
-}
-picker.addEventListener("change", () => {
-  const val = picker.value;
-  document.querySelectorAll("audio.play").forEach((a) => {
-    const savedSrc = a.getAttribute("data-src");
-    if (savedSrc) {
-      a.setAttribute("data-src", savedSrc.replace(/[^/]+\.mp3$/, val));
+      app.appendChild(card);
     }
-    if (a.src && a.src !== SILENT_SRC) {
-      const wasPlaying = !a.paused;
-      a.pause();
-      a.src = a.src.replace(/[^/]+\.mp3$/, val);
-      if (wasPlaying) a.play().catch(err => {});
+
+    // Accent/voice switcher: updates every player's src, keeping the same set.
+    const picker = document.getElementById("voice");
+    for (const v of voices) {
+      const opt = document.createElement("option");
+      opt.value = v.file; opt.textContent = v.label;
+      picker.appendChild(opt);
     }
-  });
-});
+    picker.addEventListener("change", () => {
+      document.querySelectorAll("audio.play").forEach((a) => {
+        const wasPlaying = !a.paused;
+        a.pause();
+        a.src = a.src.replace(/[^/]+\.mp3$/, picker.value);
+        if (wasPlaying) a.play();
+      });
+    });
 
-// Helper to unload an audio element and stop background downloads
-function unloadAudio(audio) {
-  if (audio.src && audio.src !== SILENT_SRC) {
-    audio.setAttribute("data-src", audio.src);
-    audio.setAttribute("data-time", audio.currentTime);
-    audio.src = SILENT_SRC;
-    audio.load();
-  }
-}
-
-// Only one audio plays at a time: starting one pauses and unloads all others.
-document.addEventListener("play", (e) => {
-  const activeAudio = e.target;
-
-  // If this audio was unloaded to save bandwidth, restore and play it
-  const savedSrc = activeAudio.getAttribute("data-src");
-  if (activeAudio.src === SILENT_SRC && savedSrc) {
-    const savedTime = parseFloat(activeAudio.getAttribute("data-time") || "0");
-    activeAudio.src = savedSrc;
-    activeAudio.load();
-    activeAudio.currentTime = savedTime;
-    activeAudio.play().catch(err => {});
-  }
-
-  // Stop and unload all other audios from buffering
-  document.querySelectorAll("audio").forEach((other) => {
-    if (other !== activeAudio) {
-      if (!other.paused) {
-        other.pause();
-      }
-      unloadAudio(other);
-    }
-  });
-}, true);
-</script>
+    // Only one audio plays at a time: starting one pauses all the others.
+    document.addEventListener("play", (e) => {
+      document.querySelectorAll("audio").forEach((other) => {
+        if (other !== e.target) other.pause();
+      });
+    }, true);
+  </script>
 </body>
+
 </html>
