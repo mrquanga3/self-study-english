@@ -98,10 +98,20 @@ const voices = [
 const escapeHtml = (str) =>
   str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
+// A line is either a plain string, or a [casual, normal] pair where `normal`
+// is the standard written-English form shown as a muted gloss beside it.
 function transcriptHtml(id) {
   const lines = (window.TRANSCRIPTS || {})[id];
   if (!lines || !lines.length) return "";
-  const items = lines.map((l) => `<li>${escapeHtml(l)}</li>`).join("");
+  const items = lines
+    .map((l) => {
+      if (Array.isArray(l)) {
+        const [casual, normal] = l;
+        return `<li>${escapeHtml(casual)}<span class="full">${escapeHtml(normal)}</span></li>`;
+      }
+      return `<li>${escapeHtml(l)}</li>`;
+    })
+    .join("");
   return `<details class="script">
       <summary>Words &amp; sentences (${lines.length})</summary>
       <ol>${items}</ol>

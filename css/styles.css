@@ -145,6 +145,19 @@ audio {
   margin: 4px 0;
 }
 
+/* Standard-English gloss shown next to a casual/reduced line. */
+.script .full {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.script .full::before {
+  content: "= ";
+}
+
 footer {
   text-align: center;
   color: var(--muted);

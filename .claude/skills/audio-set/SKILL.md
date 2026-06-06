@@ -33,6 +33,18 @@ holds the hard-won rules. This skill is the checklist for the common tasks.
 3. **Never use fake phonetic respellings** as input (TTS reads them literally).
 4. `node <set>.js && node combine.js` to regenerate.
 
+## Read-along transcripts (`js/transcripts.js`)
+- `window.TRANSCRIPTS[<set id>]` is the array shown in the collapsible
+  "Words & sentences" panel under each card. Keep it in sync when you edit a
+  generator's lines.
+- Each entry is **either** a plain string **or** a `[casual, normal]` pair.
+  Use the pair form for any set written in casual "eye-dialect" spelling
+  (`reductions`: wanna/gonna/gotta/lemme…) so the learner sees the standard
+  written-English form. `transcriptHtml()` renders `normal` as a muted `= …`
+  gloss; the renderer accepts both forms, so mixing is fine.
+- The gloss is the **written** standard form (e.g. `gonna → "going to"`), NOT a
+  phonetic respelling. Never put fake phonetics here either.
+
 ## Change / add a voice
 - Edit `voices.js` only. Then mirror the new file name in `index.html`'s
   `voices[]`. Rebuild. (Non-`en` voices read English in their own accent.)

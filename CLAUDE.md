@@ -56,6 +56,13 @@ Live site: https://mrquanga3.github.io/self-study-english/
 5. **Edge can't do `-tain` glottal/T-drop** (mountain/certain/…) or expressive
    shouting. Kept for reference with audible T. For those you need Azure (paid)
    or ElevenLabs.
+6. **Casual-spelled transcript lines must pair with a normal form.** Any line in
+   `js/transcripts.js` written in eye-dialect (`wanna`, `gonna`, `gotta`,
+   `lemme`, `dunno`, …) is a `[casual, normal]` pair, where `normal` is the
+   standard *written* English (`"I have got to finish this today."`) — never a
+   phonetic respelling. The player shows it as a muted `= …` gloss. Plain
+   strings still work for sets already in standard spelling. Keep transcripts in
+   sync with the generator's spoken lines.
 
 ## Git / privacy conventions
 
