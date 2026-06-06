@@ -156,3 +156,13 @@ footer {
 a {
   color: var(--accent);
 }
+
+/* Header dropdowns (accent + replay) */
+.control {
+  background: #0b1220;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+}

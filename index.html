@@ -15,8 +15,15 @@
     <p>Connected-speech listening practice — US, Indian &amp; Australian voices.</p>
     <p style="margin-top:14px;">
       <label for="voice" style="color:var(--muted);font-size:.85rem;">Voice / accent: </label>
-      <select id="voice"
-        style="background:#0b1220;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 8px;font-size:.9rem;"></select>
+      <select id="voice" class="control"></select>
+    </p>
+    <p style="margin-top:8px;">
+      <label for="replay" style="color:var(--muted);font-size:.85rem;">Replay: </label>
+      <select id="replay" class="control">
+        <option value="off">Off (play once)</option>
+        <option value="repeat">🔁 Repeat this part</option>
+        <option value="next">⏭ Auto-play next part</option>
+      </select>
     </p>
   </header>
   <main id="app"></main>
