@@ -118,6 +118,12 @@ Voice-Library voice (e.g. "Vector – Tec Voice") or cloning a voice from an aud
 sample (`extract-audio.js` → Instant Voice Clone) requires a **paid plan**.
 ⚠️ Only clone voices you have the right to use — not copyrighted game/actor voices.
 
+### Local voice cloning (free)
+
+Prefer **free + offline**? `clone_local.py` clones a voice locally with F5-TTS
+(no API key). See **[VOICE-CLONING.md](VOICE-CLONING.md)** for the full guide.
+(CPU is slow — ~20–30 min per run.) Your samples/outputs are git-ignored.
+
 ## Customizing
 
 - **Change the words/sentences:** edit the `sentences` / `words` / `groups`

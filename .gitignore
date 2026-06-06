@@ -1,5 +1,9 @@
 node_modules/
 *.log
 .env
+# personal voice-cloning input/output (never commit)
 *.wav
 *.mp3
+*.mp4
+intro.txt
+ref.txt
