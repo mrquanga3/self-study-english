@@ -170,21 +170,11 @@ document.addEventListener("play", (e) => {
   });
 }, true);
 
-// Replay mode: off (play once), repeat (loop this part), or next (auto-advance).
+// Replay mode: off (play once) or repeat (loop the current part).
 const replay = document.getElementById("replay");
 document.addEventListener("ended", (e) => {
-  const mode = replay.value;
-  if (mode === "repeat") {
+  if (replay.value === "repeat") {
     e.target.currentTime = 0;
     e.target.play();
-  } else if (mode === "next") {
-    // Find the next course player after the one that just finished and play it.
-    const players = [...document.querySelectorAll("audio.play")];
-    const i = players.indexOf(e.target);
-    if (i !== -1 && i + 1 < players.length) {
-      const nextEl = players[i + 1];
-      nextEl.scrollIntoView({ behavior: "smooth", block: "center" });
-      nextEl.play();
-    }
   }
 }, true);
